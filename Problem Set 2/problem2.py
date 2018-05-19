@@ -42,10 +42,12 @@ def check_minimum(balance, payment):
 
 ### Main
 
-
+# initialize variables
 payment = 10
 balance = 4773
 annualInterestRate = 0.2
+
+#loop and increment until payment is enough
 while check_minimum(balance, payment) == False:
     payment += 10
 

@@ -26,8 +26,6 @@ Assume that the interest is compounded monthly according to the balance at the e
 """
 
 ## functions
-
-
 def check_minimum(balance, payment):
     """
     Input: balance and minimum payment guess

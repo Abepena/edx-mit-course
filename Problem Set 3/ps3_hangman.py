@@ -66,7 +66,7 @@ def getGuessedWord(secretWord, lettersGuessed):
     result = ''
     for letter in secretWord:
       if letter in lettersGuessed:
-        result += letter.upper()
+        result += letter
       else:
         result += '_'
     return result.upper()

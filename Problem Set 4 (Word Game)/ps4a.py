@@ -304,10 +304,7 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    print(
-        "playGame not yet implemented."
-    )  # <-- Remove this line when you code the function
+
     hand = 0
     while True:
         user_in = input(
@@ -332,7 +329,6 @@ def playGame(wordList):
 # Build data structures used for entire session and play game
 #
 
-hand = 0
 if __name__ == "__main__":
     wordList = loadWords()
     playGame(wordList)

@@ -25,7 +25,7 @@ def compChooseWord(hand, wordList, n):
     """
     # Create a new variable to store the maximum score seen so far (initially 0)
     bestScore = 0
-    # Create a new variable to store the best word seen so far (initially None)  
+    # Create a new variable to store the best word seen so far (initially None)
     bestWord = None
     # For each word in the wordList
     for word in wordList:
@@ -34,12 +34,13 @@ def compChooseWord(hand, wordList, n):
             # find out how much making that word is worth
             score = getWordScore(word, n)
             # If the score for that word is higher than your best score
-            if (score > bestScore):
+            if score > bestScore:
                 # update your best score, and best word accordingly
                 bestScore = score
                 bestWord = word
     # return the best word you found.
     return bestWord
+
 
 #
 # Computer plays a hand
@@ -66,9 +67,9 @@ def compPlayHand(hand, wordList, n):
     # Keep track of the total score
     totalScore = 0
     # As long as there are still letters left in the hand:
-    while (calculateHandlen(hand) > 0) :
+    while calculateHandlen(hand) > 0:
         # Display the hand
-        print("Current Hand: ", end=' ')
+        print("Current Hand: ", end=" ")
         displayHand(hand)
         # computer's word
         word = compChooseWord(hand, wordList, n)
@@ -76,31 +77,39 @@ def compPlayHand(hand, wordList, n):
         if word == None:
             # End the game (break out of the loop)
             break
-            
+
         # Otherwise (the input is not a single period):
-        else :
+        else:
             # If the word is not valid:
-            if (not isValidWord(word, hand, wordList)) :
-                print('This is a terrible error! I need to check my own code!')
+            if not isValidWord(word, hand, wordList):
+                print("This is a terrible error! I need to check my own code!")
                 break
             # Otherwise (the word is valid):
-            else :
-                # Tell the user how many points the word earned, and the updated total score 
+            else:
+                # Tell the user how many points the word earned, and the updated total score
                 score = getWordScore(word, n)
                 totalScore += score
-                print('"' + word + '" earned ' + str(score) + ' points. Total: ' + str(totalScore) + ' points')              
+                print(
+                    '"'
+                    + word
+                    + '" earned '
+                    + str(score)
+                    + " points. Total: "
+                    + str(totalScore)
+                    + " points"
+                )
                 # Update hand and show the updated hand to the user
                 hand = updateHand(hand, word)
                 print()
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
-    print('Total score: ' + str(totalScore) + ' points.')
+    print("Total score: " + str(totalScore) + " points.")
 
-    
+
 #
 # Problem #6: Playing a game
 #
 #
-def playGame(wordList):
+def playGameb(wordList):
     """
     Allow the user to play an arbitrary number of hands.
  
@@ -124,15 +133,51 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
+    hand = None
+    while True:
+        first_prompt = input(
+            "Enter n to deal a new hand, r to replay the last hand, or e to end game:"
+        )
 
-        
+        if first_prompt == "e":
+            break
+        elif first_prompt == "n":
+            hand = dealHand(HAND_SIZE)
+            while True:
+                second_prompt = input(
+                    "Enter u to have yourself play, c to have the computer play: "
+                )
+                if second_prompt == "u":
+                    playHand(hand, wordList, HAND_SIZE)
+                    break
+                elif second_prompt == "c":
+                    compPlayHand(hand, wordList, HAND_SIZE)
+                    break
+                else:
+                    print("Invalid command.")
+        elif first_prompt == "r":
+            if hand == None:
+                print("You have not played a hand yet. Please play a new hand first!")
+            else:
+                while True:
+                    second_prompt = input(
+                        "Enter u to have yourself play, c to have the computer play: "
+                    )
+                    if second_prompt == "u":
+                        playHand(hand, wordList, HAND_SIZE)
+                        break
+                    elif second_prompt == "c":
+                        compPlayHand(hand, wordList, HAND_SIZE)
+                        break
+                    else:
+                        print("Invalid Command.")
+        else:
+            print("Invalid command.")
+
+
 #
 # Build data structures used for entire session and play game
 #
-if __name__ == '__main__':
+if __name__ == "__main__":
     wordList = loadWords()
-    playGame(wordList)
-
-
+    playGameb(wordList)

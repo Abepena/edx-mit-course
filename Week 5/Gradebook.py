@@ -17,7 +17,7 @@ class Person:
         return (datetime.date.today() - self.birthday.days)
     def __lt__(self,other):
         """
-        returns True of self'f name is lexigraphically
+        returns True of self's name is lexigraphically
         less than other's last name and False otherwise
         """
         if self.last_name == other.last_name:
@@ -122,7 +122,7 @@ class Grades:
     def get_grades(self,student):
         """Return a list of grades for a student"""
         try:
-            return self.grades[student.get_id_num()]
+            return self.grades[student.get_id_num()][:] #returns a copy of student grades
         except KeyError:
             raise ValueError('Student not in grade book')
     
@@ -132,7 +132,8 @@ class Grades:
             self.students.sort()
             self.is_sorted = True
         return self.students[:]
-        #returning a copy of students
+        #returning a copy of students so we dont accidentally
+        # destroy the underlying list stored inside of the instance
         
 
 def grade_report(course):

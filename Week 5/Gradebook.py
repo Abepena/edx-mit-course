@@ -59,9 +59,8 @@ class UG(Student):
     
     def speak(self, utterance):
         new = MITPerson.speak(self,"Dude {}".format(utterance))
-        return new
-
-        return(MITPerson.speak(self,new))
+        return(MITPerson.speak(self, new))
+        
 class Grad(Student):
     pass
 
